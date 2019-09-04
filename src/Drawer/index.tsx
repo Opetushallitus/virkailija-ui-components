@@ -100,25 +100,22 @@ const Drawer = ({
 
   const content = transition.map(({ item, props: transitionProps }) => {
     return item ? (
-      <Content
-        width={width}
-        anchor={anchor}
-        {...props}
-        style={transitionProps}
-        key="1"
-      >
-        {children}
-      </Content>
+      <Wrapper>
+        <ModalOverlay style={{ opacity: transitionProps.opacity }} />
+        <Content
+          width={width}
+          anchor={anchor}
+          {...props}
+          style={transitionProps}
+          key="1"
+        >
+          {children}
+        </Content>
+      </Wrapper>
     ) : null;
   });
 
-  return createPortal(
-    <Wrapper>
-      <ModalOverlay open={open} />
-      {content}
-    </Wrapper>,
-    targetRef.current!,
-  );
+  return createPortal(content, targetRef.current!);
 };
 
 export default Drawer;

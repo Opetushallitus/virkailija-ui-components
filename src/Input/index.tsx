@@ -97,29 +97,26 @@ type InputBaseProps = {
 export type InputProps = InputBaseProps &
   Omit<React.ComponentProps<typeof InputBase>, keyof InputBaseProps>;
 
-const Input = ({
-  error = false,
-  disabled = false,
-  prefix,
-  suffix,
-  ...props
-}: InputProps) => {
-  const hasPrefix = !!prefix;
-  const hasSuffix = !!suffix;
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ error = false, disabled = false, prefix, suffix, ...props }, ref) => {
+    const hasPrefix = !!prefix;
+    const hasSuffix = !!suffix;
 
-  return (
-    <InputWrapper>
-      {hasPrefix && <AffixWrapper isPrefix={true}>{prefix}</AffixWrapper>}
-      <InputBase
-        error={error}
-        disabled={disabled}
-        hasPrefix={hasPrefix}
-        hasSuffix={hasSuffix}
-        {...props}
-      />
-      {hasSuffix && <AffixWrapper isSuffix={true}>{suffix}</AffixWrapper>}
-    </InputWrapper>
-  );
-};
+    return (
+      <InputWrapper>
+        {hasPrefix && <AffixWrapper isPrefix={true}>{prefix}</AffixWrapper>}
+        <InputBase
+          error={error}
+          disabled={disabled}
+          hasPrefix={hasPrefix}
+          hasSuffix={hasSuffix}
+          ref={ref}
+          {...props}
+        />
+        {hasSuffix && <AffixWrapper isSuffix={true}>{suffix}</AffixWrapper>}
+      </InputWrapper>
+    );
+  },
+);
 
 export default Input;
