@@ -28,7 +28,7 @@ const StyledCheckbox = styled.div<{ checked: boolean; error: boolean }>`
   background-color: white;
   border: 1px solid ${({ theme }) => theme.colors.inputBorder};
   box-shadow: 0 0 0 0 transparent;
-  border-radius: 2px;
+  border-radius: ${({ theme }) => theme.radii[1]}px;
   transition: box-shadow 0.25s, border-color 0.25s, background-color 0.25s;
 
   &:hover, ${HiddenCheckbox}:focus + & {

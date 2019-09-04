@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
 import { disabledStyle } from '../system';
+import HtmlButton from '../HtmlButton';
 
 type ButtonVariant = 'contained' | 'outlined' | 'text';
 
@@ -143,13 +144,6 @@ const getSizeStyle = ({
     padding: paddings[variant][size],
   };
 };
-
-const HtmlButton = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentProps<'button'>
->(({ type = 'button', ...props }, ref) => {
-  return <button type={type} ref={ref} {...props} />;
-});
 
 const ButtonBase = styled.button<{
   size: ButtonSize;
