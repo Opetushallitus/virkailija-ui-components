@@ -60,7 +60,7 @@
   "scripts": {
     "start": "npm run storybook",
     "lint": "./node_modules/.bin/eslint src/**/* --max-warnings=0",
-    "build": "rm -rf build && ./node_modules/.bin/tsc",
+    "build": "rm -rf build && ./node_modules/.bin/tsc --p tsconfig.build.json",
     "test": "react-scripts test",
     "dopublish": "bash publish.sh",
     "precommit": "lint-staged",
