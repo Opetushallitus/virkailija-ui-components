@@ -44,11 +44,8 @@ const Tabs = ({
   fullWidth = true,
   ...props
 }: TabsProps) => {
-  const childrenCount = React.Children.count(props.children);
-
-  const children = React.Children.map(props.children, (child, index) => {
+  const children = React.Children.map(props.children, child => {
     const active = value !== undefined && child.props.value === value;
-    const isLast = index === childrenCount - 1;
 
     return React.cloneElement(child, {
       active,

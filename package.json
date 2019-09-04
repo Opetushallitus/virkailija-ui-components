@@ -1,5 +1,6 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
+  "repository": "Opetushallitus/virkailija-ui-components",
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
