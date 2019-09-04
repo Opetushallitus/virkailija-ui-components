@@ -2,7 +2,7 @@ import { lighten, rgba } from 'polished';
 
 const createColors = () => {
   const white = '#ffffff';
-  const primary = '#2da0c7';
+  const primary = '#159ecb';
   const danger = '#e05055';
   const success = '#43a047';
   const secondary = '#999999';

@@ -101,21 +101,18 @@ const Modal = ({
 
   const content = transition.map(({ item, props: transitionProps }) => {
     return item ? (
-      <ContentWrapper style={transitionProps} key="1">
-        <Content maxWidth={maxWidth} fullWidth={fullWidth} {...props}>
-          {children}
-        </Content>
-      </ContentWrapper>
+      <Wrapper>
+        <ModalOverlay style={{ opacity: transitionProps.opacity }} />
+        <ContentWrapper style={transitionProps} key="1">
+          <Content maxWidth={maxWidth} fullWidth={fullWidth} {...props}>
+            {children}
+          </Content>
+        </ContentWrapper>
+      </Wrapper>
     ) : null;
   });
 
-  return createPortal(
-    <Wrapper>
-      <ModalOverlay open={open} />
-      {content}
-    </Wrapper>,
-    targetRef.current!,
-  );
+  return createPortal(content, targetRef.current!);
 };
 
 export default Modal;
