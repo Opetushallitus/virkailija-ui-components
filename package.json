@@ -1,5 +1,6 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
+  "repository": "Opetushallitus/virkailija-ui-components",
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
@@ -41,8 +42,10 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "date-fns": "^2.0.1",
     "memoize-one": "^5.1.1",
     "polished": "^3.4.1",
+    "react-day-picker": "^7.3.2",
     "react-event-listener": "^0.6.6",
     "react-popper": "^1.3.4",
     "react-select": "^3.0.4",
@@ -57,7 +60,7 @@
   "scripts": {
     "start": "npm run storybook",
     "lint": "./node_modules/.bin/eslint src/**/* --max-warnings=0",
-    "build": "rm -rf build && ./node_modules/.bin/tsc",
+    "build": "rm -rf build && ./node_modules/.bin/tsc --p tsconfig.build.json",
     "test": "react-scripts test",
     "dopublish": "bash publish.sh",
     "precommit": "lint-staged",
