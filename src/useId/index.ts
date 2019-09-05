@@ -3,9 +3,13 @@ import * as React from 'react';
 import generateId from '../utils/generateId';
 
 const useId = (prefix?: string): string => {
-  const { current: id } = React.useRef<string>(generateId(prefix));
+  const idRef = React.useRef<string>();
 
-  return id;
+  if (!idRef.current) {
+    idRef.current = generateId(prefix);
+  }
+
+  return idRef.current;
 };
 
 export default useId;
