@@ -83,6 +83,11 @@ const Label = styled.label<{ disabled: boolean; error: boolean }>`
     }
   }
 
+  ${({ error, theme }) =>
+    error && {
+      color: theme.colors.danger.main,
+    }}
+
   ${disabledStyle}
 `;
 

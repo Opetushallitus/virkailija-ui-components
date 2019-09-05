@@ -72,9 +72,9 @@ const DropdownDialog = ({
 
   return (
     <>
-      {transitions.map(({ item, props: transitionProps }) => {
+      {transitions.map(({ item, props: transitionProps, key }) => {
         return item ? (
-          <Popper placement={placementProp} modifiers={modifiers} key="1">
+          <Popper placement={placementProp} modifiers={modifiers} key={key}>
             {({ ref, style, placement }) => {
               return (
                 <div
@@ -139,7 +139,6 @@ const Dropdown = ({
   onOverlayClick,
   toggleOnOverlayClick = true,
   toggleOnOutsideClick = true,
-  ...props
 }: DropdownProps) => {
   const [openState, setOpenState] = React.useState<boolean>(false);
   const { current: isControlled } = React.useRef<boolean>(
@@ -167,15 +166,17 @@ const Dropdown = ({
   const targetRef = React.useRef<HTMLElement>();
   const wrappedOverlay = overlay ? <div ref={overlayRef}>{overlay}</div> : null;
 
-  const createForwardingRef = React.useRef(
-    memoizeOne((ref: any) => {
+  const createForwardingRef = React.useRef<any>(null);
+
+  if (!createForwardingRef.current) {
+    createForwardingRef.current = memoizeOne((ref: any) => {
       return (node: any) => {
         targetRef.current = node;
 
         ref(node);
       };
-    }),
-  );
+    });
+  }
 
   const childrenFn = React.useCallback(
     ({ ref, ...rest }) => {

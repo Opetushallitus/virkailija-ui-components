@@ -11,7 +11,7 @@ import ModalFooter from '../ModalFooter';
 import Button from '../Button';
 import Box from '../Box';
 
-const onClose = action('close') as () => void;
+const close = action('close') as () => void;
 
 const stories = storiesOf('Components/Modal', module);
 
@@ -19,8 +19,8 @@ stories.add('Default', () => {
   const open = boolean('Open', true) as boolean;
 
   return (
-    <Modal open={open}>
-      <ModalHeader onClose={onClose}>Lorem ipsum dolor sit</ModalHeader>
+    <Modal open={open} onClose={close}>
+      <ModalHeader onClose={close}>Lorem ipsum dolor sit</ModalHeader>
       <ModalBody>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra

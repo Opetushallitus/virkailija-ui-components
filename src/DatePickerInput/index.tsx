@@ -91,7 +91,7 @@ export const DatePickerInput = ({
         component={Input}
         inputProps={{
           ...inputProps,
-          addonAfter: showIcon && <InputIcon type="event" />,
+          suffix: showIcon && <InputIcon type="event" />,
           error,
         }}
         parseDate={parseDateFn}
