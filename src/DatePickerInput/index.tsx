@@ -13,6 +13,14 @@ import isString from '../utils/isString';
 
 const firstYear = new Date(0).getFullYear();
 
+const removeLeadingZeros = (value: string) => {
+  if (isString(value)) {
+    return value.replace(/\b0/g, '');
+  }
+
+  return value;
+};
+
 const formatDateFn = (value: Date | number, format: string) => {
   return formatDate(value, format);
 };
@@ -28,7 +36,9 @@ const parseDateFn = (value: string | undefined, format: string) => {
     return undefined;
   }
 
-  const parseIsDeterministic = value === formatDate(parsedDate, format);
+  const parseIsDeterministic =
+    removeLeadingZeros(value) ===
+    removeLeadingZeros(formatDate(parsedDate, format));
 
   if (!parseIsDeterministic) {
     return undefined;
@@ -37,6 +47,8 @@ const parseDateFn = (value: string | undefined, format: string) => {
   if (parsedDate.getFullYear() < firstYear) {
     return undefined;
   }
+
+  console.log(parsedDate, format);
 
   return parsedDate || undefined;
 };

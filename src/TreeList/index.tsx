@@ -74,10 +74,10 @@ export const TreeList = <T extends TreeItem<T>>({
   return (
     <>
       {items.map(childProps => {
-        const { children = [], open = defaultOpen } = childProps;
+        const { children = [], open = defaultOpen, key } = childProps;
 
         return (
-          <div>
+          <div key={key}>
             <ItemContainer style={itemStyle}>
               {renderItem({ ...childProps, level: 0 })}
             </ItemContainer>
