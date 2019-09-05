@@ -19,7 +19,8 @@ const TabBase = styled.button.attrs({ role: 'tab' })<{
   ${({ theme }) => theme.typography.body};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
 
-  &:hover {
+  &:hover,
+  &active {
     color: ${({ theme }) => theme.colors.primary.main};
   }
 

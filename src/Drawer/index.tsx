@@ -45,10 +45,11 @@ export type DrawerBaseProps = {
   children: React.ReactNode;
   anchor?: DrawerAnchor;
   width?: string;
+  onClose?: () => void;
   open: boolean;
 };
 
-type DrawerProps = Omit<
+export type DrawerProps = Omit<
   React.ComponentProps<typeof Content>,
   keyof DrawerBaseProps
 > &
@@ -67,6 +68,7 @@ const Drawer = ({
   width = 'auto',
   open = false,
   anchor = 'right',
+  onClose = () => {},
   ...props
 }: DrawerProps) => {
   const targetRef = React.useRef<HTMLDivElement>();
@@ -98,16 +100,18 @@ const Drawer = ({
     },
   });
 
-  const content = transition.map(({ item, props: transitionProps }) => {
+  const content = transition.map(({ item, props: transitionProps, key }) => {
     return item ? (
-      <Wrapper>
-        <ModalOverlay style={{ opacity: transitionProps.opacity }} />
+      <Wrapper key={key}>
+        <ModalOverlay
+          onClick={onClose}
+          style={{ opacity: transitionProps.opacity }}
+        />
         <Content
           width={width}
           anchor={anchor}
           {...props}
           style={transitionProps}
-          key="1"
         >
           {children}
         </Content>

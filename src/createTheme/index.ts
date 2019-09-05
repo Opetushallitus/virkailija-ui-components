@@ -84,8 +84,8 @@ export const createTheme = () => {
   const breakpoints = ['576px', '768px', '992px'] as const;
 
   const fontWeights = {
-    bold: '500',
-    regular: '400',
+    bold: 500,
+    regular: 400,
   } as const;
 
   const fonts = {
@@ -125,6 +125,7 @@ export const createTheme = () => {
     lineHeight: lineHeights.heading,
     fontFamily: fonts.main,
     color: colors.text.heading,
+    fontWeight: fontWeights.bold,
   } as const;
 
   const typography = {

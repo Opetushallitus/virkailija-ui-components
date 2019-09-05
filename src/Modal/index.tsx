@@ -16,7 +16,6 @@ const Wrapper = styled.div.attrs({ role: 'dialog' })`
 
 const ContentWrapper = styled(animated.div)`
   position: absolute;
-  z-index: 2;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -28,10 +27,10 @@ const ContentWrapper = styled(animated.div)`
   padding: ${({ theme }) => theme.space[2]}px;
 `;
 
-const Content = styled.div<{ fullWidth: boolean; maxWidth: string }>`
+const Content = styled(animated.div)<{ fullWidth: boolean; maxWidth: string }>`
   width: 100%;
+  z-index: 2;
   position: relative;
-  background-color: white;
   background-color: white;
   border-radius: ${({ theme }) => theme.radii[1]}px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
@@ -48,6 +47,7 @@ type ModalBaseProps = {
   children: React.ReactNode;
   maxWidth?: string;
   fullWidth?: boolean;
+  onClose?: () => void;
   open: boolean;
 };
 
@@ -70,6 +70,7 @@ const Modal = ({
   maxWidth = '720px',
   fullWidth = false,
   open = false,
+  onClose = () => {},
   ...props
 }: ModalProps) => {
   const targetRef = React.useRef<HTMLDivElement>();
@@ -99,12 +100,20 @@ const Modal = ({
     },
   });
 
-  const content = transition.map(({ item, props: transitionProps }) => {
+  const content = transition.map(({ item, props: transitionProps, key }) => {
     return item ? (
-      <Wrapper>
-        <ModalOverlay style={{ opacity: transitionProps.opacity }} />
-        <ContentWrapper style={transitionProps} key="1">
-          <Content maxWidth={maxWidth} fullWidth={fullWidth} {...props}>
+      <Wrapper key={key}>
+        <ContentWrapper>
+          <ModalOverlay
+            onClick={onClose}
+            style={{ opacity: transitionProps.opacity }}
+          />
+          <Content
+            maxWidth={maxWidth}
+            fullWidth={fullWidth}
+            style={transitionProps}
+            {...props}
+          >
             {children}
           </Content>
         </ContentWrapper>
