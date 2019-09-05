@@ -13,14 +13,17 @@ type ChildProps = {
 export type FormControlProps = {
   label?: React.ReactElement<{ htmlFor?: string } & ChildProps> | string;
   helperText?: React.ReactElement<ChildProps> | string;
-  children: React.ReactElement<
-    {
-      id: string;
-    } & ChildProps
-  >;
+  children:
+    | React.ReactElement<
+        {
+          id: string;
+        } & ChildProps
+      >
+    | React.ReactElement<ChildProps>[];
   id?: string;
   error?: boolean;
   disabled?: boolean;
+  forwardId?: boolean;
 };
 
 const FormControl = ({
@@ -30,6 +33,7 @@ const FormControl = ({
   error = false,
   disabled = false,
   id: idProp,
+  forwardId = true,
 }: FormControlProps) => {
   const genId = useId();
   const id = idProp || genId;
@@ -38,7 +42,7 @@ const FormControl = ({
 
   const label = React.isValidElement(labelProp) ? (
     React.cloneElement(labelProp, {
-      htmlFor: labelProp.props.htmlFor || id,
+      ...(forwardId && { htmlFor: labelProp.props.htmlFor || id }),
       ...childProps,
     })
   ) : isString(labelProp) ? (
@@ -55,12 +59,18 @@ const FormControl = ({
     </FormHelperText>
   ) : null;
 
-  const children = React.isValidElement(childrenProp)
-    ? React.cloneElement(childrenProp, {
-        id: childrenProp.props.id || id,
-        ...childProps,
-      })
-    : childrenProp;
+  let children = null;
+
+  if (React.isValidElement(childrenProp)) {
+    children = React.cloneElement(childrenProp, {
+      ...(forwardId && { id: childrenProp.props.id || id }),
+      ...childProps,
+    });
+  } else {
+    children = React.Children.map(childrenProp, c => {
+      return React.isValidElement(c) ? React.cloneElement(c, childProps) : c;
+    });
+  }
 
   return (
     <>

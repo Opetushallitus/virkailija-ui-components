@@ -7,6 +7,7 @@ const FormHelperTextBase = styled.div<
   { disabled: boolean; error: boolean } & SpaceProps
 >`
   display: block;
+  margin-top: ${({ theme }) => theme.space[1]}px;
   ${({ theme }) => theme.typography.secondary};
   ${space};
 

@@ -9,6 +9,7 @@ const FormLabelBase = styled.label<
   ${({ theme }) => theme.typography.body};
   color: ${({ theme }) => theme.colors.text.heading};
   display: block;
+  margin-bottom: ${({ theme }) => theme.space[1]}px;
 
   ${space};
   ${disabledStyle}
