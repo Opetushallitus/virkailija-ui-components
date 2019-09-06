@@ -39,21 +39,21 @@ stories
     );
   })
   .add('With uncontrolled', () => {
-    const toggleOnOutsideClick = boolean(
-      'Toggle on outside click',
+    const closeOnOutsideClick = boolean(
+      'Close on outside click',
       true,
     ) as boolean;
 
-    const toggleOnOverlayClick = boolean(
-      'Toggle on overlay click',
+    const closeOnOverlayClick = boolean(
+      'Close on overlay click',
       true,
     ) as boolean;
 
     return (
       <Dropdown
         overlay={menu}
-        toggleOnOutsideClick={toggleOnOutsideClick}
-        toggleOnOverlayClick={toggleOnOverlayClick}
+        closeOnOutsideClick={closeOnOutsideClick}
+        closeOnOverlayClick={closeOnOverlayClick}
       >
         {({ ref, onToggle, open }) => (
           <Button ref={ref} onClick={onToggle}>

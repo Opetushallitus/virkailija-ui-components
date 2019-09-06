@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { Manager, Reference, Popper } from 'react-popper';
 import { useTransition, animated } from 'react-spring';
 import EventListener from 'react-event-listener';
-import memoizeOne from 'memoize-one';
+import Popper from 'popper.js';
 
 import isFunction from '../utils/isFunction';
+import usePopper from '../usePopper';
 
 const getMarginStyle = (placement: string): React.CSSProperties => {
   if (!placement) {
@@ -39,64 +39,58 @@ const getMarginStyle = (placement: string): React.CSSProperties => {
   return {};
 };
 
-type PopperProps = React.ComponentProps<typeof Popper>;
-
 type DropdownDialogProps = {
   [x: string]: any;
   overlay: React.ReactNode;
   open: boolean;
-  placement: PopperProps['placement'];
+  placement: Popper.Placement;
+  style: React.CSSProperties;
 };
 
-const DropdownDialog = ({
-  overlay,
-  open,
-  placement: placementProp,
-  modifiers = {},
-  ...props
-}: DropdownDialogProps) => {
-  const transitions = useTransition(open, null, {
-    enter: {
-      opacity: 1,
-      transform: 'scaleY(1)',
-    },
-    leave: {
-      opacity: 0,
-      transform: 'scaleY(0.9)',
-    },
-    from: {
-      opacity: 0,
-      transform: 'scaleY(0.9)',
-    },
-  });
+const DropdownDialog = React.forwardRef<HTMLDivElement, DropdownDialogProps>(
+  ({ overlay, open, placement, style, ...props }, ref) => {
+    const transitions = useTransition(open, null, {
+      enter: {
+        opacity: 1,
+        transform: 'scaleY(1)',
+      },
+      leave: {
+        opacity: 0,
+        transform: 'scaleY(0.9)',
+      },
+      from: {
+        opacity: 0,
+        transform: 'scaleY(0.9)',
+      },
+    });
 
-  return (
-    <>
-      {transitions.map(({ item, props: transitionProps, key }) => {
-        return item ? (
-          <Popper placement={placementProp} modifiers={modifiers} key={key}>
-            {({ ref, style, placement }) => {
-              return (
-                <div
-                  ref={ref}
-                  style={{ ...style, ...getMarginStyle(placement), zIndex: 1 }}
-                >
-                  <animated.div
-                    style={transitionProps}
-                    data-placement={placement}
-                    {...props}
-                  >
-                    {overlay}
-                  </animated.div>
-                </div>
-              );
-            }}
-          </Popper>
-        ) : null;
-      })}
-    </>
-  );
-};
+    return (
+      <>
+        {transitions.map(({ item, props: transitionProps, key }) => {
+          return item ? (
+            <div
+              key={key}
+              ref={ref}
+              style={{
+                ...style,
+                ...getMarginStyle(placement as any),
+                zIndex: 1,
+              }}
+            >
+              <animated.div
+                style={transitionProps}
+                data-placement={placement}
+                {...props}
+              >
+                {overlay}
+              </animated.div>
+            </div>
+          ) : null;
+        })}
+      </>
+    );
+  },
+);
 
 type DropdownChildren = (args: {
   open: boolean;
@@ -116,7 +110,7 @@ type DropdownOverlay =
     }) => React.ReactNode);
 
 type DropdownProps = {
-  placement?: PopperProps['placement'];
+  placement?: Popper.Placement;
   overlay: React.ReactNode | DropdownOverlay;
   open?: boolean;
   children: DropdownChildren;
@@ -124,8 +118,8 @@ type DropdownProps = {
   portalTarget?: HTMLElement;
   onOutsideClick?: () => void;
   onOverlayClick?: () => void;
-  toggleOnOverlayClick?: boolean;
-  toggleOnOutsideClick?: boolean;
+  closeOnOverlayClick?: boolean;
+  closeOnOutsideClick?: boolean;
 };
 
 const Dropdown = ({
@@ -137,17 +131,21 @@ const Dropdown = ({
   overflow,
   onOutsideClick,
   onOverlayClick,
-  toggleOnOverlayClick = true,
-  toggleOnOutsideClick = true,
+  closeOnOverlayClick = true,
+  closeOnOutsideClick = true,
 }: DropdownProps) => {
   const [openState, setOpenState] = React.useState<boolean>(false);
+
   const { current: isControlled } = React.useRef<boolean>(
     openProp !== undefined,
   );
 
-  const modifiers = {
-    ...(overflow && { preventOverflow: { enabled: false } }),
-  };
+  const modifiers = React.useMemo(
+    () => ({
+      ...(overflow ? { preventOverflow: { enabled: false } } : {}),
+    }),
+    [overflow],
+  );
 
   const open = isControlled ? Boolean(openProp) : openState;
 
@@ -163,51 +161,29 @@ const Dropdown = ({
     : (overlayProp as React.ReactNode);
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
-  const targetRef = React.useRef<HTMLElement>();
+  const targetRef = React.useRef<HTMLElement>(null);
+
   const wrappedOverlay = overlay ? <div ref={overlayRef}>{overlay}</div> : null;
 
-  const createForwardingRef = React.useRef<any>(null);
-
-  if (!createForwardingRef.current) {
-    createForwardingRef.current = memoizeOne((ref: any) => {
-      return (node: any) => {
-        targetRef.current = node;
-
-        ref(node);
-      };
-    });
-  }
-
-  const childrenFn = React.useCallback(
-    ({ ref, ...rest }) => {
-      return children({
-        ref: createForwardingRef.current(ref),
-        ...childrenProps,
-        ...rest,
-      });
-    },
-    [children, childrenProps],
-  );
-
   const handleOutsideClick = React.useCallback(() => {
-    if (!isControlled && toggleOnOutsideClick) {
-      setOpenState(o => !o);
+    if (!isControlled && closeOnOutsideClick) {
+      setOpenState(false);
     }
 
     if (isFunction(onOutsideClick)) {
       onOutsideClick();
     }
-  }, [isControlled, onOutsideClick, toggleOnOutsideClick]);
+  }, [isControlled, onOutsideClick, closeOnOutsideClick]);
 
   const handleOverlayClick = React.useCallback(() => {
-    if (!isControlled && toggleOnOverlayClick) {
-      setOpenState(o => !o);
+    if (!isControlled && closeOnOverlayClick) {
+      setOpenState(false);
     }
 
     if (isFunction(onOverlayClick)) {
       onOverlayClick();
     }
-  }, [isControlled, onOverlayClick, toggleOnOverlayClick]);
+  }, [isControlled, onOverlayClick, closeOnOverlayClick]);
 
   const onWindowClick = React.useCallback(
     e => {
@@ -232,22 +208,29 @@ const Dropdown = ({
     [handleOverlayClick, handleOutsideClick, open],
   );
 
+  const { placement: popperPlacement, style: popperStyle } = usePopper({
+    referenceNode: targetRef,
+    popperNode: overlayRef,
+    modifiers,
+    placement: defaultPlacement,
+  });
+
   const content = (
     <DropdownDialog
       overlay={wrappedOverlay}
       open={open}
-      placement={defaultPlacement}
+      placement={popperPlacement}
+      style={popperStyle}
       modifiers={modifiers}
+      ref={overlayRef}
     />
   );
 
   return (
     <>
       <EventListener target="window" onClick={onWindowClick} />
-      <Manager>
-        <Reference>{childrenFn}</Reference>
-        {portalTarget ? createPortal(content, portalTarget) : content}
-      </Manager>
+      {children({ ref: targetRef, ...childrenProps })}
+      {portalTarget ? createPortal(content, portalTarget) : content}
     </>
   );
 };
