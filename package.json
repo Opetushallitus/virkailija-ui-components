@@ -3,7 +3,7 @@
   "repository": "Opetushallitus/virkailija-ui-components",
   "version": "0.2.5",
   "private": false,
-  "license": "MIT",
+  "license": "EUPL",
   "keywords": [
     "opetushallitus",
     "react",
