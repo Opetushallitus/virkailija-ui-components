@@ -41,7 +41,7 @@ import Button from '@opetushallitus/virkailija-ui-components/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
 
-### `[system](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/system.ts)`-funktiot
+### [system](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/system.ts)-funktiot
 
 ```javascript
 import {
@@ -65,4 +65,4 @@ const Box = styled.div`
 ReactDOM.render(<Box p={2} bg="primary.main" color="white" />, mountNode);
 ```
 
-Jos kaipaat lisätietoja, [lue tarkempi dokumentaatio](https://styled-system.com) ja tutustu valmiiseen `[Box](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/Box/index.tsx)`-komponenttiin.
+Jos kaipaat lisätietoja, [lue tarkempi dokumentaatio](https://styled-system.com) ja tutustu valmiiseen [Box](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/Box/index.tsx)-komponenttiin.
