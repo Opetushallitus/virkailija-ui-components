@@ -1,6 +1,6 @@
 # virkailija-ui-components
 
-[![Build Status](https://travis-ci.org/Opetushallitus/virkailija-ui-components.svg?branch=master)](https://travis-ci.org/Opetushallitus/virkailija-ui-components)
+[![Build Status](https://travis-ci.org/Opetushallitus/virkailija-ui-components.svg?branch=master)](https://travis-ci.org/Opetushallitus/virkailija-ui-components) [![npm version](https://badge.fury.io/js/%40opetushallitus%2Fvirkailija-ui-components.svg)](https://badge.fury.io/js/%40opetushallitus%2Fvirkailija-ui-components)
 
 ## 📦 Asennus
 
@@ -17,7 +17,7 @@ npm i react react-dom styled-components
 ## ✨ Ominaisuudet
 
 - Kokoelma [TypeScriptillä](https://www.typescriptlang.org/index.html) toteutettuja modulaarisia [react](https://reactjs.org/)-komponentteja
-- Tyylit on toteutettu [styled-components]-kirjastolla, jonka avulla käytettävien komponenttien tyylit ladataan automaattisesti
+- Tyylit on toteutettu [styled-components](https://www.styled-components.com/)-kirjastolla, jonka avulla käytettävien komponenttien tyylit ladataan automaattisesti
 - [Teema](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/createTheme/index.ts)-objektissa määriteltyjä arvoja pystyy muokkaamaan ja niitä pääsee helposti käyttämään komponettien tyyleissä [styled-system](https://styled-system.com)-kirjaston avulla
 
 ## 🛠️ Käyttö
@@ -30,7 +30,7 @@ import createTheme from '@opetushallitus/virkailija-ui-components/createTheme';
 
 const theme = createTheme();
 
-const App = () => <ThemeProvider theme={theme}>// ...</ThemeProvider>;
+const App = () => <ThemeProvider theme={theme}>/* ... */</ThemeProvider>;
 ```
 
 ### Komponenttien käyttö
