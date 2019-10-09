@@ -8,7 +8,7 @@ export type VirkailijaRaamitProps = {
   scriptUrl: string;
 };
 
-const VirkalijaRaamit = ({ scriptUrl }: VirkailijaRaamitProps) => {
+const VirkailijaRaamit = ({ scriptUrl }: VirkailijaRaamitProps) => {
   React.useEffect(() => {
     const showRaamit = !!scriptUrl;
 
@@ -30,4 +30,4 @@ const VirkalijaRaamit = ({ scriptUrl }: VirkailijaRaamitProps) => {
   return null;
 };
 
-export default VirkalijaRaamit;
+export default VirkailijaRaamit;
