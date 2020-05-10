@@ -66,3 +66,12 @@ ReactDOM.render(<Box p={2} bg="primary.main" color="white" />, mountNode);
 ```
 
 Jos kaipaat lisätietoja, [lue tarkempi dokumentaatio](https://styled-system.com) ja tutustu valmiiseen [Box](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/Box/index.tsx)-komponenttiin.
+
+### Lokaalikehitys: 
+
+```bash
+npm i
+npm start
+```
+
+Storybook löytyy tämän jälkeen portista 6006.

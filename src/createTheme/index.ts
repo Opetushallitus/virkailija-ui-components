@@ -1,44 +1,61 @@
 import { lighten, rgba } from 'polished';
 
 const createColors = () => {
-  const white = '#ffffff';
-  const primary = '#159ecb';
-  const danger = '#e05055';
-  const success = '#43a047';
-  const secondary = '#999999';
+  const bg_white = '#ffffff';
+  const bg_black = '#2a2a2a';
+  const bg_gray = '#666';
+  const bg_gray_lighten_1 = '#999'; // eslint-disable-line
+  const bg_gray_lighten_2 = '#aeaeae';
+  const bg_gray_lighten_3 = '#ccc'; // eslint-disable-line
+  const bg_gray_lighten_4 = '#f6f4f0'; // eslint-disable-line
+  const bg_gray_lighten_5 = '#f5f5f5'; // eslint-disable-line
+  const bg_gray_lighten_6 = '#f0f3f7'; // eslint-disable-line
+  const bg_blue_darken_1 = '#00526c'; // eslint-disable-line
+  const bg_blue = '#0a789c';
+  const bg_blue_lighten_1 = '#159ecb'; // eslint-disable-line
+  const bg_blue_lighten_2 = '#00b5f0'; // eslint-disable-line
+  const bg_blue_lighten_3 = '#a6dcee'; // eslint-disable-line
+  const bg_blue_lighten_4 = '#def2ff'; // eslint-disable-line
+  const bg_red = '#e44e4e';
+  const bg_red_lighten_1 = '#e44e4e'; // eslint-disable-line
+  const bg_green = '#4c7f00';
+  const bg_green_lighten_1 = '#43a047'; // eslint-disable-line
+  const bg_green_lighten_2 = '#e6ffc1'; // eslint-disable-line
+  const bg_yellow = '#ffd024'; // eslint-disable-line
+  const bg_yellow_lighten_1 = '#fff7bc'; // eslint-disable-line
 
   const error = {
-    main: danger,
-    contrastText: white,
-    focusOutline: rgba(danger, 0.3),
+    main: bg_red,
+    contrastText: bg_white,
+    focusOutline: rgba(bg_red, 0.2),
   };
 
   const colors = {
-    white,
+    bg_white,
     divider: 'rgba(0, 0, 0, 0.15)',
     inputBorder: '#ced4da',
     modalOverlay: 'rgba(0, 0, 0, 0.5)',
     primary: {
-      main: primary,
-      contrastText: white,
-      focusOutline: rgba(primary, 0.3),
+      main: bg_blue,
+      contrastText: bg_white,
+      focusOutline: rgba(bg_blue, 0.2),
     },
     success: {
-      main: success,
-      contrastText: white,
-      focusOutline: rgba(success, 0.3),
+      main: bg_green,
+      contrastText: bg_white,
+      focusOutline: rgba(bg_green, 0.2),
     },
     secondary: {
-      main: '#999999',
-      contrastText: white,
-      focusOutline: rgba(secondary, 0.3),
+      main: bg_gray,
+      contrastText: bg_white,
+      focusOutline: rgba(bg_gray, 0.2),
     },
     error,
     danger: error,
     text: {
-      primary: '#666666',
-      secondary: '#a6a6a6',
-      heading: '#2a2a2a',
+      primary: bg_gray,
+      secondary: bg_gray_lighten_2,
+      heading: bg_black,
     },
   } as const;
 
