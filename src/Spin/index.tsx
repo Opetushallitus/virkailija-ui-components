@@ -37,7 +37,7 @@ const SpinCircle = styled.div<{ size: SpinSize; color: SpinColor }>`
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.1);
   border-top-color: ${({ theme, color }) =>
-    color === 'white' ? theme.colors.white : theme.colors.primary.main};
+    color === 'white' ? theme.colors.bg_white : theme.colors.primary.main};
   border-radius: 50%;
   animation: ${spin};
   animation-duration: 1s;
