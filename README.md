@@ -20,6 +20,10 @@ npm i react react-dom styled-components
 - Tyylit on toteutettu [styled-components](https://www.styled-components.com/)-kirjastolla, jonka avulla käytettävien komponenttien tyylit ladataan automaattisesti
 - [Teema](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/createTheme/index.ts)-objektissa määriteltyjä arvoja pystyy muokkaamaan ja niitä pääsee helposti käyttämään komponettien tyyleissä [styled-system](https://styled-system.com)-kirjaston avulla
 
+## 📖 Storybook
+
+- Master: https://dev-files.ops.opintopolku.fi/storybooks/virkailija-ui-components/master/index.html
+
 ## 🛠️ Käyttö
 
 ### Teeman määrittäminen

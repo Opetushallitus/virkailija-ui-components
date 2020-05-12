@@ -5,9 +5,32 @@ node_js:
 cache:
   npm: true
 
+env:
+  global:
+    # AWS_ACCESS_KEY_ID
+    - secure: "GO7GVCeHx8mUeShQbJ8QuwEJhlGD3kRA/Fhz/uE61QQZQ+OfFygIKnlq4UYoh1hyMjIZtde/4CNcmBtMr60E2wsjZ788VAQTwqCH3PO7kSxbKMA+o9c8UWe8GBoDmAWByKuI8lp6mmYV23u4N1GWQeZBeAN1L+TCb/20Dp9j5oD9XSsSf9fJKlZ2Ne800plZuoF0rDD8J8SfLIFwepfWHS0sIyUJPowVFJfkWfLWmKQxFcJqVHWQla12STHv4Q+2N10VP6KYdZUojZwwDQI0DBlg9AsYvDhXbzIEuQQzYbwpWNeKrxe4lp7tH+m0MmFKVQlDdGh0uiXSe8m3XWSjVTw2WPmibOFfMphtriI9zEwqwMknwt+TW1hmkpGF3tqvQVZLvCFqBonVEdQ5h0ucPtN2NsDMq6Sb4y48QDFqnMZ2cT0gs7YBqgopNuzjl9SJ3kpQS4vXYCcpDOzOLaKIGeu7G6vwHV+R60jsUJ8wzCRoVdY4G6AcJP+pHPp9xIHec4OicRu9yXrSICrhV72ztmkADYj9cg/OcCXUpFPdM+HnC3pXdCn1K/NzBewWjSErX0V14GPIr4dvCHijn8hiNWjPLo02m1o7ClwaEu7LVwRPKE7cH+swt55WHXuuLaC0M7RDPjtGMm8V/9klDoMRuEHlK9R9f0/Ley5e6+ZmrbQ="
+    # AWS_SECRET_ACCESS_KEY
+    - secure: "HaM3GUmCOnjYp69a3RgwO5ZiMVfK737aYy87RnRyieBT54H30/PVvEblmlkzJLGrZaSavgTOtVkmOO8IvEdPmHFFInZG4BTGDoRlYmZ0Mbihl025U4CyMn4V44NBKhAjJy0sGSR2sq1J4ziW3x6Lgc/Zz6vR9OGZ/bzUDM65nn2pBsdImPZjJUBVXRnqrrJxR6pAdcYbLRyqXKJJMp7E8IJMgzmywZGF4/dKahB4lRDul9+eWqavxnQF352nVyOWj07uik0tEumLcNIqhu/aJizELGwK3SGiyTNLrb49SHfuIEOYICy5CwVLMUNZumvrvgigB4jQo/uIKaFj51ZdiCuXWwDyOlXOobWjOLvVC+fir18kBZqxZAq+2Ank3mJGyJMPhlxdkRucqlAH0vVzv7JRRI+3bihn8La92HUVvc0AoNt4WryF1QRE5KrJLYO1WCE0Efu3/f39qt6M2qg7X1tHJp7midx8juGhmUrErbU579anezb5FaZCzJO2D+4LebgXSVCsvVDJQ8is+yVGBpGmxv/3QcNZazrhSw1cX+B5InCLKvT5zz/4g8WwXmkbBRwG3x5/e5eO8u7IPXoq+omLjmvOnQhc3s0vvghSkSCIU83DjfGujdRjbC7ARMEa2YoCL/UPGB9wTpRP+064/6ZXVxn9I8Td84K2JcFetQs="
+    # NPM_TOKEN
+    - secure: "WfQ+res2kbIHyGZLNs6eU/ZTg4a3AStDz6goqOziUgtxiFKIcnF6xoP8r+xxhqjnq4QEX1hpRzoRe+EGMiCxeZmIMW4IfiN1SZ7eSnRF6EiCTlsuXQi5zfVwomBdw+WmkqZTc7WuljVnrpn7hzXdIWXnwrwtn3HkgtUKQ9N6XuzT1mICihqeJTrAukgCoTg6p+lHMf8iOYfLeIMHO4ruf5Fn+BaoOC7Zi5Utq3JbFmVfDceJjdhR85D29D5cjk2X+eXlCo6fl/i1WUsI4ZCHMSZAARJtgbdra/PnMoyI81xGA32XfS9wRxHZsXXEy5zi9icgCUX5qBuj6GTo9zQx8j4LD9EN3lODVwULj4TS5QLMDDoz0hgg+ItPuDni30VKn0NrKGNScVkW5igiqPXIETxYTPPyI8VV0IVUWNbTlj5loDyvGRKvrVerhQWmTNZs6KvG6g6jNemQTUNmWeEQIR9AdrE3FhzPVMUe6HqJxzE6ZpZ2FeE7RNkRlnzuwyqhjsdEXWJ7NuAzWhdJ4F4nlBjUTCKtMWlAvz//H/Z5dCEWbNxJF24ui2CG+N7s4ZJzNPhumVE3PmrSZxMxMoXaCiNoiQSdwol698HH/gsBLzVk9Jt3G2bJ8O3F2exOujnIXMZBU1JZrE+rcpLU367ao6PlJbDVcxBKyB3i3Pn2Rtc="
+
 install:
+  - git clone https://github.com/Opetushallitus/ci-tools.git
+  - source ci-tools/common/setup-tools.sh
   - npm install
 
 script:
-  - npm run lint
-  - ./node_modules/.bin/tsc
+  - sh scripts/build.sh
+  - sh scripts/build-storybook.sh
+
+deploy:
+  - provider: script
+    script: sh scripts/publish.sh
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: script
+    script: sh scripts/deploy-storybook.sh
+    skip_cleanup: true
+    on:
+      all_branches: true
