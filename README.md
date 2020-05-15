@@ -4,6 +4,14 @@
 
 ## 📦 Asennus
 
+Versiosta 0.3.3 alkaen virkailija-ui-components julkaistaan [OPH:n Nexus-pakettivarastoon](https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/). Npm täytyy konfiguroida käyttämään kyseistä pakettivarastoa OPH:n paketeille. Lisää projektisi [`.npmrc`-tiedostoon](https://docs.npmjs.com/configuring-npm/npmrc.html) rivi:
+
+```bash
+@opetushallitus:registry=https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/
+```
+
+Nyt kaikki `@opetushallitus`-["skoopin"](https://docs.npmjs.com/using-npm/scope.html) paketit asennetaan Nexus-pakettivarastosta, ja kaikki muut npm:n omasta pakettivarastosta. Virkailija-ui-components asennetaan komennolla:
+
 ```bash
 npm i @opetushallitus/virkailija-ui-components
 ```
@@ -19,6 +27,10 @@ npm i react react-dom styled-components
 - Kokoelma [TypeScriptillä](https://www.typescriptlang.org/index.html) toteutettuja modulaarisia [react](https://reactjs.org/)-komponentteja
 - Tyylit on toteutettu [styled-components](https://www.styled-components.com/)-kirjastolla, jonka avulla käytettävien komponenttien tyylit ladataan automaattisesti
 - [Teema](https://github.com/Opetushallitus/virkailija-ui-components/blob/master/src/createTheme/index.ts)-objektissa määriteltyjä arvoja pystyy muokkaamaan ja niitä pääsee helposti käyttämään komponettien tyyleissä [styled-system](https://styled-system.com)-kirjaston avulla
+
+## 📖 Storybook
+
+- Master: https://dev-files.ops.opintopolku.fi/storybooks/virkailija-ui-components/master/index.html
 
 ## 🛠️ Käyttö
 

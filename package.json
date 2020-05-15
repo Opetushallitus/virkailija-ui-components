@@ -1,15 +1,18 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
-  "repository": "Opetushallitus/virkailija-ui-components",
+  "repository": "github:Opetushallitus/virkailija-ui-components",
   "version": "0.3.3",
   "private": false,
-  "license": "EUPL",
+  "license": "EUPL-1.1",
   "keywords": [
     "opetushallitus",
     "react",
     "react-dom",
     "components"
   ],
+  "publishConfig": {
+    "registry": "https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/"
+  },
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@storybook/addon-actions": "5.1.11",
