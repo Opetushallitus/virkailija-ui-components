@@ -6,6 +6,11 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "warn",
-    "no-unexpected-multiline": "off"
+    "no-unexpected-multiline": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/display-name": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
   }
 }
