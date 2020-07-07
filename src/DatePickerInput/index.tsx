@@ -86,11 +86,12 @@ export const DatePickerInput = ({
   const classNames = {
     ...classNamesProp,
     overlay: `${defaultClassNames.overlay} ${classNamesProp.overlay || ''}`,
-    overlayWrapper: `${
-      defaultClassNames.overlayWrapper
-    } ${classNamesProp.overlayWrapper || ''}`,
-    container: `${defaultClassNames.container} ${classNamesProp.container ||
-      ''}`,
+    overlayWrapper: `${defaultClassNames.overlayWrapper} ${
+      classNamesProp.overlayWrapper || ''
+    }`,
+    container: `${defaultClassNames.container} ${
+      classNamesProp.container || ''
+    }`,
   };
 
   return (

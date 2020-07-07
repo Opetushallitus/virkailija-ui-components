@@ -10,16 +10,18 @@ type ChildProps = {
   disabled?: boolean;
 };
 
+type ChildrenType =
+  | React.ReactElement<
+      {
+        id: string;
+      } & ChildProps
+    >
+  | React.ReactElement<ChildProps>[];
+
 export type FormControlProps = {
   label?: React.ReactElement<{ htmlFor?: string } & ChildProps> | string;
   helperText?: React.ReactElement<ChildProps> | string;
-  children:
-    | React.ReactElement<
-        {
-          id: string;
-        } & ChildProps
-      >
-    | React.ReactElement<ChildProps>[];
+  children: ChildrenType;
   id?: string;
   error?: boolean;
   disabled?: boolean;
@@ -59,7 +61,7 @@ const FormControl = ({
     </FormHelperText>
   ) : null;
 
-  let children = null;
+  let children: ChildrenType;
 
   if (React.isValidElement(childrenProp)) {
     children = React.cloneElement(childrenProp, {
@@ -67,7 +69,7 @@ const FormControl = ({
       ...childProps,
     });
   } else {
-    children = React.Children.map(childrenProp, c => {
+    children = React.Children.map(childrenProp, (c) => {
       return React.isValidElement(c) ? React.cloneElement(c, childProps) : c;
     });
   }

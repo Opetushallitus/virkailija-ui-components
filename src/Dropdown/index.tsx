@@ -158,7 +158,7 @@ const Dropdown = ({
     open,
     onClose: () => setOpenState(false),
     onOpen: () => setOpenState(true),
-    onToggle: () => setOpenState(o => !o),
+    onToggle: () => setOpenState((o) => !o),
   };
 
   const overlay = isFunction(overlayProp)
@@ -194,7 +194,7 @@ const Dropdown = ({
 
   const handleOutsideClick = React.useCallback(() => {
     if (!isControlled && closeOnOutsideClick) {
-      setOpenState(o => !o);
+      setOpenState((o) => !o);
     }
 
     if (isFunction(onOutsideClick)) {
@@ -204,7 +204,7 @@ const Dropdown = ({
 
   const handleOverlayClick = React.useCallback(() => {
     if (!isControlled && closeOnOverlayClick) {
-      setOpenState(o => !o);
+      setOpenState((o) => !o);
     }
 
     if (isFunction(onOverlayClick)) {
@@ -213,7 +213,7 @@ const Dropdown = ({
   }, [isControlled, onOverlayClick, closeOnOverlayClick]);
 
   const onWindowClick = React.useCallback(
-    e => {
+    (e) => {
       const isTriggerElement =
         targetRef.current &&
         (targetRef.current === e.target ||

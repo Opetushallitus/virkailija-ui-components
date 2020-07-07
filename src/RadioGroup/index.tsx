@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-
+import { uniqueId } from 'lodash';
 import isArray from '../utils/isArray';
 import Radio from '../Radio';
 
@@ -20,7 +20,7 @@ type RadioGroupChild = React.ReactElement<{
   onChange?: (arg: any) => void;
   disabled?: boolean;
   error?: boolean;
-}>
+}>;
 
 export type RadioGroupProps = {
   children?: RadioGroupChild[];
@@ -42,7 +42,7 @@ export const RadioGroup = ({
   let children: React.ReactNode = null;
 
   if (childrenProp) {
-    const validChildren = React.Children.toArray(childrenProp).filter(c =>
+    const validChildren = React.Children.toArray(childrenProp).filter((c) =>
       React.isValidElement(c),
     ) as RadioGroupChild[];
 
@@ -58,7 +58,12 @@ export const RadioGroup = ({
       });
 
       return (
-        <Container isLast={index === childrenCount - 1}>{element}</Container>
+        <Container
+          key={uniqueId('RadioContainer_')}
+          isLast={index === childrenCount - 1}
+        >
+          {element}
+        </Container>
       );
     });
   } else if (isArray(options)) {

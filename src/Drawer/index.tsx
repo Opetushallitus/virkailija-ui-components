@@ -119,7 +119,7 @@ const Drawer = ({
     ) : null;
   });
 
-  return createPortal(content, targetRef.current!);
+  return createPortal(content, targetRef.current);
 };
 
 export default Drawer;

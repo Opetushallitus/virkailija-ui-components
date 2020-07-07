@@ -121,7 +121,7 @@ const Modal = ({
     ) : null;
   });
 
-  return createPortal(content, targetRef.current!);
+  return createPortal(content, targetRef.current);
 };
 
 export default Modal;
