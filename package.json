@@ -76,7 +76,7 @@
     "precommit": "lint-staged",
     "prettier": "prettier --write 'src/**/*'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook --quiet"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
