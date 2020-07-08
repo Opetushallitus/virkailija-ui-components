@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calls onClick when clicked 1`] = `
+.c0 {
+  cursor: pointer;
+  border: 0px none;
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  font-weight: 500;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-color: #0a789c;
+  background-color: #0a789c;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 6px 16px;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #0d9dcc;
+  background-color: #0d9dcc;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
+}
+
+<button
+  class="c0"
+  color="primary"
+  type="button"
+  variant="contained"
+>
+  Click me!
+</button>
+`;
+
+exports[`Disabled button cannot be interacted with 1`] = `
+.c0 {
+  cursor: pointer;
+  border: 0px none;
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  font-weight: 500;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-color: #0a789c;
+  background-color: #0a789c;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 6px 16px;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #0d9dcc;
+  background-color: #0d9dcc;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
+}
+
+<button
+  class="c0"
+  color="primary"
+  disabled=""
+  type="button"
+  variant="contained"
+>
+  Click me!
+</button>
+`;
+
+exports[`Renders correctly with custom component ("as"-prop) 1`] = `
+.c0 {
+  cursor: pointer;
+  border: 0px none;
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  font-weight: 500;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-color: #0a789c;
+  background-color: #0a789c;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 6px 16px;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #0d9dcc;
+  background-color: #0d9dcc;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
+}
+
+<div
+  class="c0"
+  color="primary"
+  variant="contained"
+>
+  Button with custom component
+</div>
+`;
+
+exports[`Renders correctly with custom size, variant, and color 1`] = `
+.c0 {
+  cursor: pointer;
+  border: 0px none;
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  font-weight: 500;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 4px 16px;
+  border: 2px solid #666;
+  color: #666;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #808080;
+  color: #808080;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(102,102,102,0.2);
+}
+
+<button
+  class="c0"
+  color="secondary"
+  type="button"
+  variant="outlined"
+>
+  Small outlined secondary button
+</button>
+`;
+
+exports[`Renders correctly with defaults 1`] = `
+.c0 {
+  cursor: pointer;
+  border: 0px none;
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  transition: box-shadow 0.25s,background-color 0.25s,border-color 0.25s,color 0.25s;
+  font-weight: 500;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-color: #0a789c;
+  background-color: #0a789c;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 6px 16px;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #0d9dcc;
+  background-color: #0d9dcc;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
+}
+
+<button
+  class="c0"
+  color="primary"
+  type="button"
+  variant="contained"
+>
+  Default button
+</button>
+`;
