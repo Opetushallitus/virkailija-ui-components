@@ -19,9 +19,9 @@ stories.add('Default', () => {
       disabled={disabled}
       error={error}
       options={[
-        { value: '1', label: 'Radio 1' },
-        { value: '2', label: 'Radio 2' },
-        { value: '3', label: 'Radio 3' },
+        { value: '1', label: 'Checkbox 1' },
+        { value: '2', label: 'Checkbox 2' },
+        { value: '3', label: 'Checkbox 3' },
       ]}
       onChange={change}
     />
