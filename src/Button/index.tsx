@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
-
 import { disabledStyle } from '../system';
 import HtmlButton from '../HtmlButton';
 

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders correctly with defaults 1`] = `
+.c0 {
+  border: 1px solid #ced4da;
+  color: #666;
+  font-family: 'Roboto',sans-serif;
+  line-height: 1.5;
+  border-radius: 4px;
+  outline: none;
+  padding: 6px 12px;
+  font-size: 1rem;
+  -webkit-transition: border-color 0.25s,box-shadow 0.25s;
+  transition: border-color 0.25s,box-shadow 0.25s;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.c0:hover,
+.c0:focus {
+  border-color: #0a789c;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
+}
+
+<textarea
+  class="c0"
+  rows="3"
+  type="text"
+/>
+`;
