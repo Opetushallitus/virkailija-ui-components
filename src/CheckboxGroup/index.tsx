@@ -20,7 +20,7 @@ const cleanValue = (
     return value;
   }
 
-  return value.filter(v => optionValues.indexOf(v) >= 0);
+  return value.filter((v) => optionValues.indexOf(v) >= 0);
 };
 
 const makeOnCheckboxChange = ({
@@ -37,7 +37,12 @@ const makeOnCheckboxChange = ({
   if (e.target.checked) {
     onChange(cleanValue([...value, optionValue], options));
   } else {
-    onChange(cleanValue(value.filter(v => v !== optionValue), options));
+    onChange(
+      cleanValue(
+        value.filter((v) => v !== optionValue),
+        options,
+      ),
+    );
   }
 };
 

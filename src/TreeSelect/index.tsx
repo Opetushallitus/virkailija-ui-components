@@ -19,7 +19,9 @@ export type TreeSelectProps<T> = {
   onChange?: (value: string[]) => void;
 };
 
-const defaultGetLabel = <T extends {}>(node: T): React.ReactNode => {
+const defaultGetLabel = <T extends Record<string, unknown>>(
+  node: T,
+): React.ReactNode => {
   if (isObject(node)) {
     return (node as any).label;
   }
@@ -27,7 +29,9 @@ const defaultGetLabel = <T extends {}>(node: T): React.ReactNode => {
   return null;
 };
 
-const defaultGetValue = <T extends {}>(node: T): string => {
+const defaultGetValue = <T extends Record<string, unknown>>(
+  node: T,
+): string => {
   if (isObject(node)) {
     return (node as any).value || '';
   }
@@ -35,7 +39,9 @@ const defaultGetValue = <T extends {}>(node: T): string => {
   return '';
 };
 
-const defaultGetChildren = <T extends {}>(node: T): T[] => {
+const defaultGetChildren = <T extends Record<string, unknown>>(
+  node: T,
+): T[] => {
   if (isObject(node)) {
     return (node as any).children || [];
   }
@@ -43,7 +49,9 @@ const defaultGetChildren = <T extends {}>(node: T): T[] => {
   return [];
 };
 
-const defaultGetIsDisabled = <T extends {}>(node: T): boolean => {
+const defaultGetIsDisabled = <T extends Record<string, unknown>>(
+  node: T,
+): boolean => {
   if (isObject(node)) {
     return Boolean((node as any).disabled);
   }
@@ -62,7 +70,7 @@ type TreeNode = {
   parent: TreeNode | null;
 };
 
-const getTree = <T extends {}>({
+const getTree = <T extends Record<string, unknown>>({
   options,
   value,
   getChildren,
@@ -79,7 +87,7 @@ const getTree = <T extends {}>({
   getIsDisabled: (node: T) => boolean;
   parent: TreeNode | null;
 }): TreeNode[] => {
-  return options.map(opt => {
+  return options.map((opt) => {
     const val = getValue(opt);
     const label = getLabel(opt);
     const children = getChildren(opt) || [];
@@ -91,12 +99,13 @@ const getTree = <T extends {}>({
       label,
       disabled,
       checked: value.includes(val),
-      indeterminate: !!children.find(child => value.includes(getValue(child))),
+      indeterminate: !!children.find((child) =>
+        value.includes(getValue(child)),
+      ),
       parent,
       children: [],
-    };
+    } as any;
 
-    // @ts-ignore
     node.children = getTree({
       options: children,
       value,
@@ -219,7 +228,7 @@ const makeOnOptionChange = ({
   return onChange(nextValue);
 };
 
-const TreeSelect = <T extends {}>({
+const TreeSelect = <T extends Record<string, unknown>>({
   getLabel = defaultGetLabel,
   getValue = defaultGetValue,
   getChildren = defaultGetChildren,
@@ -250,7 +259,7 @@ const TreeSelect = <T extends {}>({
   }, [tree]);
 
   const onChange = React.useCallback(
-    nextValue => {
+    (nextValue) => {
       onChangeProp(getCleanValue(nextValue, allOptionValues));
     },
     [allOptionValues, onChangeProp],

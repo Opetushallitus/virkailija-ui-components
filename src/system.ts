@@ -1,15 +1,18 @@
 export {
   space,
-  SpaceProps,
   color,
-  ColorProps,
   flexbox,
-  FlexboxProps,
   layout,
-  LayoutProps,
   typography,
-  TypographyProps,
   shadow,
+} from 'styled-system';
+
+export type {
+  SpaceProps,
+  ColorProps,
+  FlexboxProps,
+  LayoutProps,
+  TypographyProps,
   ShadowProps,
 } from 'styled-system';
 

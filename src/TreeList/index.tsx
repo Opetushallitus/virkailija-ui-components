@@ -30,7 +30,7 @@ const renderChildren = <T extends TreeItem<T>>({
 }) => {
   return children.length > 0 ? (
     <ChildrenContainer style={childrenContainerStyle}>
-      {children.map(childProps => {
+      {children.map((childProps) => {
         const { key, children = [], open = defaultOpen } = childProps;
 
         return (
@@ -73,7 +73,7 @@ export const TreeList = <T extends TreeItem<T>>({
 }: TreeListProps<T>) => {
   return (
     <>
-      {items.map(childProps => {
+      {items.map((childProps) => {
         const { children = [], open = defaultOpen, key } = childProps;
 
         return (

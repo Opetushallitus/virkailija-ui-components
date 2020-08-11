@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-
+import { uniqueId } from 'lodash';
 import isArray from '../utils/isArray';
 import Radio from '../Radio';
 
@@ -14,14 +14,16 @@ const Container = styled.div<{ isLast: boolean }>`
 
 type RadioGroupOption = { value: string; label: React.ReactNode };
 
+type RadioGroupChild = React.ReactElement<{
+  checked?: boolean;
+  value: string;
+  onChange?: (arg: any) => void;
+  disabled?: boolean;
+  error?: boolean;
+}>;
+
 export type RadioGroupProps = {
-  children?: React.ReactElement<{
-    checked?: boolean;
-    value: string;
-    onChange?: (arg: any) => void;
-    disabled?: boolean;
-    error?: boolean;
-  }>[];
+  children?: RadioGroupChild[];
   value: string;
   onChange?: (arg: any) => void;
   disabled?: boolean;
@@ -40,14 +42,14 @@ export const RadioGroup = ({
   let children: React.ReactNode = null;
 
   if (childrenProp) {
-    const validChildren = React.Children.toArray(childrenProp).filter(c =>
+    const validChildren = React.Children.toArray(childrenProp).filter((c) =>
       React.isValidElement(c),
-    );
+    ) as RadioGroupChild[];
 
     const childrenCount = React.Children.count(validChildren);
 
-    children = React.Children.map(validChildren, (child, index) => {
-      const checked = value !== undefined && child.props.value === value;
+    children = validChildren.map((child, index) => {
+      const checked = value !== undefined && child?.props?.value === value;
       const element = React.cloneElement(child, {
         checked,
         onChange,
@@ -55,9 +57,14 @@ export const RadioGroup = ({
         error,
       });
 
-      const isLast = index === childrenCount - 1;
-
-      return <Container isLast={isLast}>{element}</Container>;
+      return (
+        <Container
+          key={uniqueId('RadioContainer_')}
+          isLast={index === childrenCount - 1}
+        >
+          {element}
+        </Container>
+      );
     });
   } else if (isArray(options)) {
     children = options.map(({ value: optionValue, label }, index) => (
@@ -67,6 +74,7 @@ export const RadioGroup = ({
           onChange={onChange}
           value={optionValue}
           error={error}
+          disabled={disabled}
         >
           {label}
         </Radio>

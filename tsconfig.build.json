@@ -9,6 +9,8 @@
     "node_modules",
     "src/**/*.stories.*",
     "src/**/__tests__/**",
-    "src/**/*.test.*"
+    "src/**/*.test.*",
+    "src/setupTests.ts",
+    "src/testUtils.tsx"
   ]
 }

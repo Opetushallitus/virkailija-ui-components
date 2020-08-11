@@ -44,7 +44,7 @@ const Tabs = ({
   fullWidth = true,
   ...props
 }: TabsProps) => {
-  const children = React.Children.map(props.children, child => {
+  const children = React.Children.map(props.children, (child) => {
     const active = value !== undefined && child.props.value === value;
 
     return React.cloneElement(child, {

@@ -39,7 +39,7 @@ const Story = () => {
       options={options}
       value={value}
       error={error}
-      onChange={v => {
+      onChange={(v) => {
         setValue(v);
         change(v);
       }}
