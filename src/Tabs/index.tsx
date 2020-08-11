@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import isFunction from '../utils/isFunction';
+import { notIn } from '../utils/notIn';
 
 type TabsAlignTabs = 'start' | 'center' | 'end';
 
@@ -11,7 +12,9 @@ const mapAlignToJustifyContent = {
   end: 'flex-end',
 } as const;
 
-const Wrapper = styled.div.attrs({ role: 'tablist' })<{
+const Wrapper = styled.div.attrs({ role: 'tablist' }).withConfig({
+  shouldForwardProp: notIn(['fullWidth', 'alignTabs']),
+})<{
   alignTabs: TabsAlignTabs;
   fullWidth: boolean;
 }>`
