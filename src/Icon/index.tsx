@@ -12,20 +12,30 @@ import {
 
 type SystemProps = ColorProps & SpaceProps & TypographyProps;
 
-const IconBase = styled.span<SystemProps>`
+const IconBase = styled.i<SystemProps>`
   font-size: 1.5rem;
   ${color};
   ${space};
   ${typography};
 `;
 
+type MaterialIconTheme =
+  | 'outlined'
+  | 'two-tone'
+  | 'round'
+  | 'sharp'
+  | undefined;
+
 export type IconProps = React.ComponentProps<typeof IconBase> & {
   type: string;
+  variant: MaterialIconTheme;
 };
 
 const Icon = React.forwardRef<HTMLSpanElement, IconProps>(
-  ({ type, className = '', ...props }, ref) => {
-    const iconClassName = `material-icons ${className}`;
+  ({ type, variant, className = '', ...props }, ref) => {
+    const iconClassName = `material-icons${
+      variant ? '-' + variant : ''
+    } ${className}`;
 
     return (
       <IconBase ref={ref} className={iconClassName} {...props}>
