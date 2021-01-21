@@ -1,7 +1,7 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
   "repository": "github:Opetushallitus/virkailija-ui-components",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": false,
   "license": "EUPL-1.1",
   "keywords": [
