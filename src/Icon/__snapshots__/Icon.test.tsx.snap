@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders an icon 1`] = `
+.c0 {
+  font-size: 1.5rem;
+}
+
+<i
+  class="c0 material-icons "
+>
+  flag
+</i>
+`;
+
+exports[`Renders an outlined icon 1`] = `
+.c0 {
+  font-size: 1.5rem;
+}
+
+<i
+  class="c0 material-icons-outlined "
+>
+  flag
+</i>
+`;
