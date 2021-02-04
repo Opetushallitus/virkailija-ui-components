@@ -17,6 +17,7 @@ export type TreeSelectProps<T> = {
   getChildren?: (node: T) => T[];
   getIsDisabled?: (node: T) => boolean;
   onChange?: (value: string[]) => void;
+  disableAutoSelect?: boolean;
 };
 
 const defaultGetLabel = <T extends Record<string, unknown>>(
@@ -197,11 +198,13 @@ const makeOnOptionChange = ({
   value,
   onChange,
   optionValue,
+  disableAutoSelect = false,
 }: {
   options: TreeNode[];
   value: string[];
   optionValue: string;
   onChange: (value: string[]) => void;
+  disableAutoSelect: boolean;
 }) => (e: React.ChangeEvent<HTMLInputElement>) => {
   const { checked } = e.target;
 
@@ -213,16 +216,22 @@ const makeOnOptionChange = ({
     return;
   }
 
-  nextValue = uniq(
-    checked
-      ? [...value, ...getDeepChildrenValues(node), node.value]
-      : without(value, ...[...getDeepChildrenValues(node), node.value]),
-  );
+  if (disableAutoSelect) {
+    nextValue = uniq(
+      checked ? [...value, node.value] : without(value, node.value),
+    );
+  } else {
+    nextValue = uniq(
+      checked
+        ? [...value, ...getDeepChildrenValues(node), node.value]
+        : without(value, ...[...getDeepChildrenValues(node), node.value]),
+    );
 
-  nextValue = uniq(getValueWithCheckedParents(node, nextValue));
+    nextValue = uniq(getValueWithCheckedParents(node, nextValue));
 
-  if (!checked) {
-    nextValue = getValueWithUncheckedParents(node, nextValue);
+    if (!checked) {
+      nextValue = getValueWithUncheckedParents(node, nextValue);
+    }
   }
 
   return onChange(nextValue);
@@ -237,6 +246,7 @@ const TreeSelect = <T extends Record<string, unknown>>({
   value: valueProp = [],
   onChange: onChangeProp = () => {},
   error = false,
+  disableAutoSelect = false,
 }: TreeSelectProps<T>) => {
   const value = valueProp || [];
 
@@ -276,6 +286,7 @@ const TreeSelect = <T extends Record<string, unknown>>({
             value,
             onChange,
             optionValue,
+            disableAutoSelect,
           })}
           error={error}
           indeterminate={indeterminate}
@@ -285,7 +296,7 @@ const TreeSelect = <T extends Record<string, unknown>>({
         </Checkbox>
       );
     },
-    [onChange, tree, value, error],
+    [onChange, tree, value, error, disableAutoSelect],
   );
 
   return <TreeList items={tree}>{renderItem}</TreeList>;
