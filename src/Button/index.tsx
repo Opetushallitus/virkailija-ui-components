@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 import { disabledStyle } from '../system';
 import HtmlButton from '../HtmlButton';
+import { notIn } from '../utils/notIn';
 
 type ButtonVariant = 'contained' | 'outlined' | 'text';
 
@@ -144,7 +145,9 @@ const getSizeStyle = ({
   };
 };
 
-const ButtonBase = styled.button<{
+const ButtonBase = styled.button.withConfig({
+  shouldForwardProp: notIn(['fullWidth']),
+})<{
   size: ButtonSize;
   variant: ButtonVariant;
   disabled: boolean;

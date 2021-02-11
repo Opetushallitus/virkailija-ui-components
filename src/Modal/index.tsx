@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
 import ModalOverlay from '../ModalOverlay';
+import { notIn } from '../utils/notIn';
 
 const Wrapper = styled.div.attrs({ role: 'dialog' })`
   z-index: ${({ theme }) => theme.zIndices.modal};
@@ -27,7 +28,9 @@ const ContentWrapper = styled(animated.div)`
   padding: ${({ theme }) => theme.space[2]}px;
 `;
 
-const Content = styled(animated.div)<{ fullWidth: boolean; maxWidth: string }>`
+const Content = styled(animated.div).withConfig({
+  shouldForwardProp: notIn(['fullWidth', 'maxWidth']),
+})<{ fullWidth: boolean; maxWidth: string }>`
   width: 100%;
   z-index: 2;
   position: relative;

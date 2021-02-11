@@ -1,7 +1,7 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
   "repository": "github:Opetushallitus/virkailija-ui-components",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "private": false,
   "license": "EUPL-1.1",
   "keywords": [
@@ -40,20 +40,24 @@
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "babel-loader": "^8.1.0",
+    "bufferutil": "^4.0.1",
+    "canvas": "^2.6.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "jest-styled-components": "^6.3.4",
+    "jest-resolve": "^26.3.0",
+    "jest-styled-components": "^7.0.2",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^4.3.2",
+    "styled-components": "^5.1.1",
     "ts-jest": "^26.1.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "utf-8-validate": "^5.0.2"
   },
   "dependencies": {
     "date-fns": "2.0.1",
@@ -68,9 +72,9 @@
     "styled-system": "5.1.1"
   },
   "peerDependencies": {
-    "styled-components": "^4.3.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "styled-components": ">=5",
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "scripts": {
     "start": "npm run storybook",

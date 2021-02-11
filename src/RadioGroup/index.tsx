@@ -1,7 +1,6 @@
 import * as React from 'react';
+import { isArray } from 'lodash';
 import styled, { css } from 'styled-components';
-import { uniqueId } from 'lodash';
-import isArray from '../utils/isArray';
 import Radio from '../Radio';
 
 const Container = styled.div<{ isLast: boolean }>`
@@ -29,6 +28,7 @@ export type RadioGroupProps = {
   disabled?: boolean;
   error?: boolean;
   options?: RadioGroupOption[];
+  getIsDisabled?: (value: string) => boolean;
 };
 
 export const RadioGroup = ({
@@ -38,6 +38,7 @@ export const RadioGroup = ({
   options,
   error = false,
   children: childrenProp,
+  getIsDisabled = () => false,
 }: RadioGroupProps) => {
   let children: React.ReactNode = null;
 
@@ -53,13 +54,16 @@ export const RadioGroup = ({
       const element = React.cloneElement(child, {
         checked,
         onChange,
-        disabled,
+        disabled:
+          disabled ||
+          getIsDisabled(child.props?.value) ||
+          child.props?.disabled,
         error,
       });
 
       return (
         <Container
-          key={uniqueId('RadioContainer_')}
+          key={child?.props?.value}
           isLast={index === childrenCount - 1}
         >
           {element}
@@ -74,7 +78,7 @@ export const RadioGroup = ({
           onChange={onChange}
           value={optionValue}
           error={error}
-          disabled={disabled}
+          disabled={disabled || getIsDisabled(optionValue)}
         >
           {label}
         </Radio>
