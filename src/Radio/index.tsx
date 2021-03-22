@@ -37,7 +37,8 @@ const StyledRadio = styled.div<{ checked: boolean; error: boolean }>`
   justify-content: center;
   align-items: center;
 
-  &:hover, ${HiddenRadio}:focus + & {
+  &:hover,
+  ${HiddenRadio}:focus + & {
     border-color: ${({ theme, error }) =>
       error ? theme.colors.danger.main : theme.colors.primary.main};
   }

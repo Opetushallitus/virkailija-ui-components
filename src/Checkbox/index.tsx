@@ -31,7 +31,8 @@ const StyledCheckbox = styled.div<{ checked: boolean; error: boolean }>`
   border-radius: ${({ theme }) => theme.radii[1]}px;
   transition: box-shadow 0.25s, border-color 0.25s, background-color 0.25s;
 
-  &:hover, ${HiddenCheckbox}:focus + & {
+  &:hover,
+  ${HiddenCheckbox}:focus + & {
     border-color: ${({ theme, error }) =>
       error ? theme.colors.danger.main : theme.colors.primary.main};
   }

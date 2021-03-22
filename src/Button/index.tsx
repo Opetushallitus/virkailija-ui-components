@@ -167,7 +167,8 @@ const ButtonBase = styled.button.withConfig({
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
-  transition: box-shadow 0.25s, background-color 0.25s, border-color 0.25s, color 0.25s;
+  transition: box-shadow 0.25s, background-color 0.25s, border-color 0.25s,
+    color 0.25s;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   text-decoration: none;
 
