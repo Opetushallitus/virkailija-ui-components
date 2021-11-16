@@ -13,8 +13,16 @@ type TextareaBaseProps = {
 export type TextareaProps = TextareaBaseProps &
   Omit<React.ComponentProps<typeof TextareaBase>, keyof TextareaBaseProps>;
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ rows = 3, error = false, disabled = false, ...props }, ref) => (
-  <TextareaBase ref={ref} error={error} disabled={disabled} rows={rows} {...props} />
-));
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ rows = 3, error = false, disabled = false, ...props }, ref) => (
+    <TextareaBase
+      ref={ref}
+      error={error}
+      disabled={disabled}
+      rows={rows}
+      {...props}
+    />
+  ),
+);
 
 export default Textarea;
