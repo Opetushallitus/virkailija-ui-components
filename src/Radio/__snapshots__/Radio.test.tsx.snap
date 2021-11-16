@@ -21,8 +21,6 @@ exports[`Renders a radio button 1`] = `
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -63,7 +61,7 @@ exports[`Renders a radio button 1`] = `
   border-color: #0a789c;
 }
 
-.c2:focus + .c5 {
+.c2:focus + .c4 {
   box-shadow: 0 0 0 3px rgba(10,120,156,0.2);
 }
 
