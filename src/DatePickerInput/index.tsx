@@ -47,9 +47,6 @@ const parseDateFn = (value: string | undefined, format: string) => {
   if (parsedDate.getFullYear() < firstYear) {
     return undefined;
   }
-
-  console.log(parsedDate, format);
-
   return parsedDate || undefined;
 };
 
