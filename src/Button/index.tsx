@@ -161,7 +161,6 @@ const getLoadingStyle = ({ loading }: { loading: boolean }) =>
   css`
     cursor: progress;
     ${getLoadingColorStyle}
-    disabled: true
     & > div {
       margin-left: 0.5rem;
     }
@@ -213,8 +212,6 @@ const ButtonBase = styled.button.withConfig({
   ${getVariantStyle}
   ${getSizeStyle}
   ${disabledStyle}
-  
-  
   ${getLoadingStyle}
 
   ${({ fullWidth }) =>
@@ -258,7 +255,7 @@ const Button = React.forwardRef<HTMLElement, ButtonProps>(
         ref={ref as React.Ref<HTMLButtonElement>}
         size={size}
         variant={variant}
-        disabled={disabled}
+        disabled={disabled || loading}
         color={color}
         as={asProp}
         fullWidth={fullWidth}

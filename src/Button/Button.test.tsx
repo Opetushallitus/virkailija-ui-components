@@ -43,7 +43,7 @@ test('Disabled button cannot be interacted with', () => {
       Click me!
     </Button>,
   );
-
+  fireEvent.click(rootElement);
   expect(handleClick).not.toBeCalled();
   expect(rootElement).toMatchSnapshot();
 });
@@ -55,8 +55,8 @@ test('Loading state button cannot be interacted with', () => {
       Click me!
     </Button>,
   );
+  fireEvent.click(rootElement);
   expect(handleClick).not.toBeCalled();
-  expect(rootElement).toMatchSnapshot();
 });
 
 test('Loading state button displays Oph Spinner', () => {
@@ -65,5 +65,4 @@ test('Loading state button displays Oph Spinner', () => {
   expect((children[2] as HTMLDivElement).getAttribute('class')).toContain(
     'Oph-Spinner',
   );
-  expect(rootElement).toMatchSnapshot();
 });
