@@ -55,7 +55,6 @@ test('Loading state button cannot be interacted with', () => {
       Click me!
     </Button>,
   );
-  const children = rootElement.childNodes;
   expect(handleClick).not.toBeCalled();
   expect(rootElement).toMatchSnapshot();
 });
