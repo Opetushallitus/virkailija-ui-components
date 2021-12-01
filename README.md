@@ -1,16 +1,17 @@
 # virkailija-ui-components
 
-[![Build Status](https://travis-ci.org/Opetushallitus/virkailija-ui-components.svg?branch=master)](https://travis-ci.org/Opetushallitus/virkailija-ui-components) [![npm version](https://badge.fury.io/js/%40opetushallitus%2Fvirkailija-ui-components.svg)](https://badge.fury.io/js/%40opetushallitus%2Fvirkailija-ui-components)
+[![Build Status](https://travis-ci.org/Opetushallitus/virkailija-ui-components.svg?branch=master)](https://travis-ci.org/Opetushallitus/virkailija-ui-components)
 
 ## Kirjastoa käyttävät Opintopolun palvelut
 
 - [Kouta-ui](https://github.com/opetushallitus/kouta-ui)
 - [Varda-rekisterointi](https://github.com/Opetushallitus/varda-rekisterointi)
 - [Ehoks-ui](https://github.com/Opetushallitus/ehoks-ui)
+- [Uusi Organisaatiopalvelu](https://github.com/Opetushallitus/organisaatio)
 
 ## 📦 Asennus
 
-Versiosta 0.3.3 alkaen virkailija-ui-components julkaistaan [OPH:n Nexus-pakettivarastoon](https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/). Npm täytyy konfiguroida käyttämään kyseistä pakettivarastoa OPH:n paketeille. Lisää projektisi [`.npmrc`-tiedostoon](https://docs.npmjs.com/configuring-npm/npmrc.html) rivi:
+Virkailija-ui-components julkaistaan [OPH:n Nexus-pakettivarastoon](https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/). Npm täytyy konfiguroida käyttämään kyseistä pakettivarastoa OPH:n paketeille. Lisää projektisi [`.npmrc`-tiedostoon](https://docs.npmjs.com/configuring-npm/npmrc.html) rivi:
 
 ```bash
 @opetushallitus:registry=https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/
