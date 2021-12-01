@@ -47,3 +47,24 @@ test('Disabled button cannot be interacted with', () => {
   expect(handleClick).not.toBeCalled();
   expect(rootElement).toMatchSnapshot();
 });
+
+test('Loading state button cannot be interacted with', () => {
+  const handleClick = jest.fn();
+  const { rootElement } = render(
+    <Button onClick={handleClick} loading={true}>
+      Click me!
+    </Button>,
+  );
+  const children = rootElement.childNodes;
+  expect(handleClick).not.toBeCalled();
+  expect(rootElement).toMatchSnapshot();
+});
+
+test('Loading state button displays Oph Spinner', () => {
+  const { rootElement } = render(<Button loading={true}>Click me!</Button>);
+  const children = rootElement.childNodes;
+  expect((children[2] as HTMLDivElement).getAttribute('class')).toContain(
+    'Oph-Spinner',
+  );
+  expect(rootElement).toMatchSnapshot();
+});
