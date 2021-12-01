@@ -3,6 +3,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 import { disabledStyle } from '../system';
 import HtmlButton from '../HtmlButton';
 import { notIn } from '../utils/notIn';
+import Spin from '../Spin';
 
 type ButtonVariant = 'contained' | 'outlined' | 'text';
 
@@ -84,6 +85,31 @@ const getContainedColorStyle = ({
   `;
 };
 
+const getLoadingColorStyle = ({ theme }: { theme: DefaultTheme }) => {
+  const { outlineColor, hoverOutlineColor } = theme.buttonVariants.outlined[
+    'secondary'
+  ];
+
+  return `
+    background-color: transparent;
+    padding: 4px 16px;
+    border: 2px solid ${outlineColor};
+    color: ${outlineColor};
+
+    &:hover, &:active {
+      background-color: transparent;
+      border-color: ${hoverOutlineColor};
+      color: ${hoverOutlineColor};
+    }
+    &:focus {
+      box-shadow: none;
+    }
+    & > div.Oph-Spinner {
+      margin-left: 0.5rem;
+    }
+  `;
+};
+
 const getTextVariantColorStyle = ({
   color,
   theme,
@@ -130,6 +156,16 @@ const getVariantStyle = ({ variant }: { variant: ButtonVariant }) => {
   }
 };
 
+const getLoadingStyle = ({ loading }: { loading: boolean }) =>
+  loading &&
+  css`
+    cursor: progress;
+    ${getLoadingColorStyle}
+    & > div {
+      margin-left: 0.5rem;
+    }
+  `;
+
 const getSizeStyle = ({
   size,
   variant,
@@ -146,13 +182,14 @@ const getSizeStyle = ({
 };
 
 const ButtonBase = styled.button.withConfig({
-  shouldForwardProp: notIn(['fullWidth']),
+  shouldForwardProp: notIn(['fullWidth', 'loading']),
 })<{
   size: ButtonSize;
   variant: ButtonVariant;
   disabled: boolean;
   color: ButtonColor;
   fullWidth: boolean;
+  loading: boolean;
 }>`
   cursor: pointer;
   border: 0px none;
@@ -175,6 +212,7 @@ const ButtonBase = styled.button.withConfig({
   ${getVariantStyle}
   ${getSizeStyle}
   ${disabledStyle}
+  ${getLoadingStyle}
 
   ${({ fullWidth }) =>
     fullWidth &&
@@ -190,6 +228,7 @@ type ButtonBaseProps = {
   color?: ButtonColor;
   disabled?: boolean;
   fullWidth?: boolean;
+  loading?: boolean;
   children: React.ReactNode;
 };
 
@@ -205,6 +244,8 @@ const Button = React.forwardRef<HTMLElement, ButtonProps>(
       as: asProp = HtmlButton,
       disabled = false,
       fullWidth = false,
+      loading = false,
+      children,
       ...props
     },
     ref,
@@ -214,12 +255,15 @@ const Button = React.forwardRef<HTMLElement, ButtonProps>(
         ref={ref as React.Ref<HTMLButtonElement>}
         size={size}
         variant={variant}
-        disabled={disabled}
+        disabled={disabled || loading}
         color={color}
         as={asProp}
         fullWidth={fullWidth}
+        loading={loading}
         {...props}
-      />
+      >
+        {children} {loading && <Spin size={'small'} />}
+      </ButtonBase>
     );
   },
 );

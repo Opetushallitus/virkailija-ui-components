@@ -37,7 +37,7 @@ stories.add('Default', () => {
   ) as any;
 
   const disabled = boolean('Disabled', false) as boolean;
-
+  const loading = boolean('Loading', false) as boolean;
   const fullWidth = boolean('Full width', false) as boolean;
 
   return (
@@ -47,6 +47,7 @@ stories.add('Default', () => {
       size={size}
       disabled={disabled}
       fullWidth={fullWidth}
+      loading={loading}
     >
       Button
     </Button>

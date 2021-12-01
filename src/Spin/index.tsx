@@ -72,9 +72,10 @@ export const Spin = ({
   center = false,
   disableTypography = false,
   children,
+  className = 'Oph-Spinner',
   ...props
 }: SpinProps) => {
-  const spinProps = { size, color, ...props };
+  const spinProps = { size, color, ...props, className };
 
   const content = children ? (
     <Box display="inline-flex" alignItems="center">
@@ -89,7 +90,11 @@ export const Spin = ({
     <SpinCircle {...spinProps} />
   );
 
-  return center ? <CenterContainer>{content}</CenterContainer> : content;
+  return center ? (
+    <CenterContainer className={className}>{content}</CenterContainer>
+  ) : (
+    content
+  );
 };
 
 export default Spin;
