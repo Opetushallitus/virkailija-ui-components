@@ -8,7 +8,11 @@ const Container = styled.div<{ isLast: boolean }>`
   ${({ isLast }) => !isLast && { marginBottom: '4px' }}
 `;
 
-type CheckboxGroupOption = { value: string; label: React.ReactNode };
+type CheckboxGroupOption = {
+  value: string;
+  label: React.ReactNode;
+  disabled?: boolean;
+};
 
 const cleanValue = (
   value: string[],
@@ -63,24 +67,26 @@ const CheckboxGroup = ({
 }: CheckboxGroupProps) => {
   return (
     <>
-      {options.map(({ value: optionValue, label }, index) => (
-        <Container key={optionValue} isLast={index === options.length - 1}>
-          <Checkbox
-            checked={value.indexOf(optionValue) >= 0}
-            onChange={makeOnCheckboxChange({
-              value,
-              onChange,
-              optionValue,
-              options,
-            })}
-            disabled={disabled}
-            name={optionValue}
-            error={error}
-          >
-            {label}
-          </Checkbox>
-        </Container>
-      ))}
+      {options.map(
+        ({ value: optionValue, label, disabled: optionDisabled }, index) => (
+          <Container key={optionValue} isLast={index === options.length - 1}>
+            <Checkbox
+              checked={value.indexOf(optionValue) >= 0}
+              onChange={makeOnCheckboxChange({
+                value,
+                onChange,
+                optionValue,
+                options,
+              })}
+              disabled={optionDisabled || disabled}
+              name={optionValue}
+              error={error}
+            >
+              {label}
+            </Checkbox>
+          </Container>
+        ),
+      )}
     </>
   );
 };

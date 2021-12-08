@@ -15,13 +15,18 @@ stories.add('Default', () => {
 
   return (
     <CheckboxGroup
-      value={['1']}
+      value={['1', '4']}
       disabled={disabled}
       error={error}
       options={[
-        { value: '1', label: 'Checkbox 1' },
-        { value: '2', label: 'Checkbox 2' },
-        { value: '3', label: 'Checkbox 3' },
+        { value: '1', label: 'Checkbox 1 (checked)' },
+        { value: '2', label: 'Checkbox 2 (not checked)' },
+        { value: '3', label: 'Checkbox 3 (disabled)', disabled: true },
+        {
+          value: '4',
+          label: 'Checkbox 3 (disabled & checked)',
+          disabled: true,
+        },
       ]}
       onChange={change}
     />
