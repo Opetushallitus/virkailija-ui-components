@@ -1,5 +1,5 @@
-import { DefaultTheme } from 'styled-components';
-import { setLightness } from 'polished';
+import {DefaultTheme} from 'styled-components';
+import {setLightness} from 'polished';
 import memoizeOne from 'memoize-one';
 
 export const getStyles = memoizeOne((theme: DefaultTheme, error: boolean) => ({
@@ -46,7 +46,12 @@ export const getStyles = memoizeOne((theme: DefaultTheme, error: boolean) => ({
   },
   option: (provided: any, state: any) => ({
     ...provided,
-    color: state.isSelected ? 'white' : theme.colors.text.primary,
+    color: state.isSelected
+      ? 'white'
+      : state.isDisabled
+      ? 'lightgray'
+      : theme.colors.text.primary,
+    cursor: state.isDisabled ? 'not-allowed' : provided.cursor,
   }),
   singleValue: (provided: any, state: any) => {
     const opacity = state.isDisabled ? 0.5 : 1;
