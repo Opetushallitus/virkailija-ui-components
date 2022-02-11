@@ -17,6 +17,7 @@ type CheckboxGroupOption = {
 const cleanValue = (
   value: string[],
   options: CheckboxGroupOption[],
+  keepOldValuesOnChange: boolean
 ): string[] => {
   const optionValues = options.map(({ value }) => value);
 
@@ -24,7 +25,11 @@ const cleanValue = (
     return value;
   }
 
-  return value.filter((v) => optionValues.indexOf(v) >= 0);
+  if (keepOldValuesOnChange) {
+    return value;
+  } else {
+    return value.filter((v) => optionValues.indexOf(v) >= 0);
+  }
 };
 
 const makeOnCheckboxChange = ({
@@ -37,6 +42,7 @@ const makeOnCheckboxChange = ({
   onChange: (value: string[]) => void;
   optionValue: string;
   options: CheckboxGroupOption[];
+  keepOldValuesOnChange: boolean
 }) => (e: React.ChangeEvent<HTMLInputElement>) => {
   if (e.target.checked) {
     onChange(cleanValue([...value, optionValue], options));
@@ -56,6 +62,7 @@ export type CheckboxGroupProps = {
   options?: CheckboxGroupOption[];
   error?: boolean;
   disabled?: boolean;
+  keepOldValuesOnChange: boolean
 };
 
 const CheckboxGroup = ({
@@ -64,6 +71,7 @@ const CheckboxGroup = ({
   options = [],
   error = false,
   disabled = false,
+  keepOldValuesOnChange = false,
 }: CheckboxGroupProps) => {
   return (
     <>
@@ -77,6 +85,7 @@ const CheckboxGroup = ({
                 onChange,
                 optionValue,
                 options,
+                keepOldValuesOnChange,
               })}
               disabled={optionDisabled || disabled}
               name={optionValue}
