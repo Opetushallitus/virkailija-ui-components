@@ -28,7 +28,7 @@ deploy:
     script: sh scripts/publish.sh
     skip_cleanup: true
     on:
-      branch: add-keepOldValuesOnChange-param-for-checkboxgroup
+      branch: master
   - provider: script
     script: sh scripts/deploy-storybook.sh
     skip_cleanup: true
