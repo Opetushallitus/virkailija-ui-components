@@ -1,7 +1,7 @@
 {
   "name": "@opetushallitus/virkailija-ui-components",
   "repository": "github:Opetushallitus/virkailija-ui-components",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "private": false,
   "license": "EUPL-1.1",
   "keywords": [
@@ -60,16 +60,16 @@
     "utf-8-validate": "^5.0.4"
   },
   "dependencies": {
-    "date-fns": "2.19.0",
+    "date-fns": "^2.19.0",
     "lodash": "^4.17.21",
-    "memoize-one": "5.1.1",
-    "polished": "4.1.1",
-    "react-day-picker": "7.4.10",
-    "react-event-listener": "0.6.6",
-    "react-popper": "2.2.4",
-    "react-select": "4.3.0",
-    "react-spring": "8.0.27",
-    "styled-system": "5.1.5"
+    "memoize-one": "^5.1.1",
+    "polished": "^4.1.1",
+    "react-day-picker": "^7.4.10",
+    "react-event-listener": "^0.6.6",
+    "react-popper": "^2.2.4",
+    "react-select": "^4.3.0",
+    "react-spring": "^8.0.27",
+    "styled-system": "^5.1.5"
   },
   "peerDependencies": {
     "styled-components": ">=5",
