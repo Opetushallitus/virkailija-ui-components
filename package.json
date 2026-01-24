@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "date-fns": "^2.19.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "memoize-one": "^5.1.1",
     "polished": "^4.1.1",
     "react-day-picker": "^7.4.10",
