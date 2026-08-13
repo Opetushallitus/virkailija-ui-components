@@ -11,16 +11,22 @@
 
 ## 📦 Asennus
 
-Virkailija-ui-components julkaistaan [OPH:n Nexus-pakettivarastoon](https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/). Npm täytyy konfiguroida käyttämään kyseistä pakettivarastoa OPH:n paketeille. Lisää projektisi [`.npmrc`-tiedostoon](https://docs.npmjs.com/configuring-npm/npmrc.html) rivi:
+Versiosta 0.4.8 lähtien komponenttikirjasto on julkaistu Github Packagesiin.
 
-```bash
-@opetushallitus:registry=https://artifactory.opintopolku.fi/artifactory/repository/oph-opintopolku-npm/
+Asentamista varten tarvitaan todennustoken, jonka luontiohjeet löytyvät [täältä](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
+
+Kun token on luotu, se täytyy ottaa vielä käyttöön npm-paketeille. Lisää kotihakemistoosi `.npmrc`-tiedostoon seuraavanlainen rivi:
+
+```
+//npm.pkg.github.com/:_authToken=todennustoken
 ```
 
-Nyt kaikki `@opetushallitus`-["skoopin"](https://docs.npmjs.com/using-npm/scope.html) paketit asennetaan Nexus-pakettivarastosta, ja kaikki muut npm:n omasta pakettivarastosta. Virkailija-ui-components asennetaan komennolla:
+Korvaa "todennustoken" luomasi tokenin merkkijonolla.
 
-```bash
-npm i @opetushallitus/virkailija-ui-components
+Tämän jälkeen täytyy vielä konfiguroida npm käyttämään Github Packagesin pakettivarastoa `@opetushallitus`-skoopin paketeille. Lisää projektisi `.npmrc`-tiedostoon rivi:
+
+```
+@opetushallitus:registry=https://npm.pkg.github.com
 ```
 
 Asenna myös tarvittaessa vertaisriippuvuudet `react`, `react-dom` ja `styled-components`:
